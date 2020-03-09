@@ -7,9 +7,12 @@ import indigo400 from '@material-ui/core/colors/indigo';
 
 import Title from '../components/Title';
 import data from '../request/places';
+import Container from '../components/container';
 
 import Benefit from '../components/benefits';
 import PlaceCard from '../components/places/placeCard';
+
+import { TransitionGroup } from 'react-transition-group';
 
 // variables colores
 const indigo = indigo400[400];
@@ -21,8 +24,10 @@ export default class Home extends React.Component{
         super(props);
 
         this.state = {
-            places: data.places
+            places: []
         }
+
+        setTimeout(() => this.setState({places: data.places}), 2000)
 
         //Evita que el valor de this cambie reasignando la funcion
         this.hidePlace = this.hidePlace.bind(this)
@@ -47,7 +52,7 @@ export default class Home extends React.Component{
         return(
             <section>
                 <div className="bg-backgrond">
-                    <div style={{"width": "80%", "margin": "0 auto"}}>
+                    <Container>
                       <div className="header-main">
                         <Title></Title>
 
@@ -57,13 +62,13 @@ export default class Home extends React.Component{
                       <div>
                         <Benefit></Benefit>
                       </div>
-                    </div>
+                    </Container>
                 </div>
                 <div style={{ "backgroundColor": indigo,'padding': '50px' , color:'white'}}>
                   <h3 style={{'fontSize': '25px'}}>Sitios populares</h3>
-                    <div className="row">
-                    {this.places()}
-                    </div>
+                    <TransitionGroup className="row">
+                      {this.places()}
+                    </TransitionGroup>
                 </div>
             </section>
         );

@@ -1,11 +1,9 @@
 import React, {Component} from 'react';
 import {  ThemeProvider } from '@material-ui/core/styles';
 
+import MyNavBar from './components/navigation/MyNavBar';
 
-
-import Home from './pages/home';
 import './App.css';
-
 
 class App extends Component {
 
@@ -17,7 +15,8 @@ class App extends Component {
     render() {
         return (
             <ThemeProvider>
-                <Home></Home>
+            <MyNavBar/>
+                {this.props.children}
             </ThemeProvider>
         )
     }
