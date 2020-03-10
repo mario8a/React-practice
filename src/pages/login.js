@@ -5,7 +5,7 @@ import Button from '@material-ui/core/Button';
 import Container from '../components/container';
 
 import {
-    BrowserRouter as ReactRouter,
+    // BrowserRouter as ReactRouter,
     Route,
     Link
   } from "react-router-dom";
@@ -26,11 +26,15 @@ export default class Login extends React.Component{
                             <Route path="/login" exact render={() => {
                                 return(
                                     <div>
+
+                                        <Link to="/" style={{'marginRight': "1rem"}}>
+                                          Inicio
+                                        </Link>
                                         <Link to="/signup" style={{'marginRight': "1rem"}}>
-                                        Crear nueva cuenta
+                                          Crear nueva cuenta
                                         </Link>
                                         <Button variant="contained" color="secondary">
-                                        Ingresar
+                                          Ingresar
                                         </Button>
                                     </div>  
                                 )
@@ -57,11 +61,13 @@ export default class Login extends React.Component{
                         <div>
                             <Route path="/login" exact render={() => 
                                 
+                                    // eslint-disable-next-line no-useless-concat
                                     <div className="login-bg" style={{'backgroundImage': "url("+ process.env.PUBLIC_URL + '/img/login-bg.jpg' + ")"}}></div>
                                 
                             }></Route>
                             <Route path="/signup" exact render={() => 
                                 
+                                    // eslint-disable-next-line no-useless-concat
                                     <div className="login-bg" style={{'backgroundImage': "url("+ process.env.PUBLIC_URL + '/img/welcome.jpg' + ")"}}></div>
                                 
                             }></Route>

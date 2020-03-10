@@ -7,10 +7,11 @@ import indigo400 from '@material-ui/core/colors/indigo';
 
 import Title from '../components/Title';
 import data from '../request/places';
-import Container from '../components/container';
+import {Link} from "react-router-dom";
 
 import Benefit from '../components/benefits';
 import PlaceCard from '../components/places/placeCard';
+import Container from '../components/container';
 
 import { TransitionGroup } from 'react-transition-group';
 
@@ -24,10 +25,10 @@ export default class Home extends React.Component{
         super(props);
 
         this.state = {
-            places: []
+            places: data.places
         }
 
-        setTimeout(() => this.setState({places: data.places}), 2000)
+        // setTimeout(() => this.setState({places: data.places}), 2000)
 
         //Evita que el valor de this cambie reasignando la funcion
         this.hidePlace = this.hidePlace.bind(this)
@@ -55,8 +56,9 @@ export default class Home extends React.Component{
                     <Container>
                       <div className="header-main">
                         <Title></Title>
-
-                        <Button variant="contained" color="primary">Crear cuenta</Button>
+                        <Link to="/signup">
+                          <Button variant="contained" color="primary">Crear cuenta</Button>
+                        </Link>
                         <img className="img-illustration" src={process.env.PUBLIC_URL + '/img/placesIcon.png'} alt="Logotipo del sitio"/>
                       </div>
                       <div>

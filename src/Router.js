@@ -3,6 +3,7 @@ import React from 'react';
 import {
     BrowserRouter as ReactRouter,
     Route,
+    Switch
   } from "react-router-dom";
 
 import Home from './pages/home';
@@ -33,13 +34,16 @@ export default class Router extends React.Component {
         return(
             <ReactRouter>
               <App>
-                <Route exact path="/" component={this.home()}></Route>
-                <Route path="/login" component={Login}></Route>
-                <Route path="/signup" component={Login}></Route>
-                {this.signedInRoutes()}
+                <Switch>
+                  <Route exact path="/" component={this.home()}></Route>
+                  <Route path="/login" component={Login}></Route>
+                  <Route path="/signup" component={Login}></Route>
+                  {this.signedInRoutes()}
+                </Switch>
               </App>
             </ReactRouter>
         )
     }
+    // Switch encaja unicamente con el primero que condida con la ruta (component)
 
 }
