@@ -12,7 +12,7 @@ export default class PlaceHorizontal extends React.Component {
             <Card style={{'marginTop': '1em', 'overflow': 'hidden'}}>
               <div className="row">
                 <div className="planceH-avatar">
-                  <img src={this.props.place.imageURL} alt=""/>
+                  <img src={this.props.place.avatarImage} alt=""/>
                 </div>
                 <div className="col-xs" style={{'textAlign': 'left'}}>
                   <CardHeader 

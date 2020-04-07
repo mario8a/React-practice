@@ -4,7 +4,8 @@ import Button from '@material-ui/core/Button';
 import Fab from '@material-ui/core/Fab';
 import AddIcon from '@material-ui/icons/Add';
 
-import data from '../request/places';
+// import data from '../request/places';
+import {getPlaces} from '../request/places';
 
 import Container from '../components/container';
 import PlaceHorizontal from '../components/places/placeHorizontal';
@@ -19,8 +20,19 @@ export default class Dashboard extends React.Component {
         super(props);
 
         this.state = {
-            places: data.places
+            places: []
         }
+
+        this.loadPlaces()
+    }
+
+    loadPlaces() {
+      getPlaces().then(resp => {
+        console.log(resp);
+        this.setState({
+          places: resp.docs
+        })
+      })
     }
 
     places() {
