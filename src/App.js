@@ -16,12 +16,18 @@ class App extends Component {
     constructor(props) {
         super(props);
         console.log(props);
+        // para no perder el valor de this
+        this.goHome = this.goHome.bind(this);
+    }
+
+    goHome(){
+        this.props.history.push('/');
     }
 
     render() {
         return (
             <ThemeProvider>
-                <MyNavBar/>
+                <MyNavBar goHome={this.goHome}/>
                 <TransitionGroup>
                     <CSSTransition classNames="left-out" timeout={300} key={this.props.location.pathname.split('/')[1]}>
                     {this.props.children}

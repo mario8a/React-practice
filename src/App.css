@@ -28,6 +28,18 @@
   text-align: center;
 }
 
+.place-container {
+
+}
+.place-cover {
+  height: 350px;
+  background-size: cover;
+  background-position: center;
+}
+.place-card {
+  text-align: left;
+  padding: 30px;
+}
 /* .header-main {
   margin-bottom: 2em;
   text-align: center;

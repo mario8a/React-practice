@@ -3,6 +3,8 @@ import AppBar from '@material-ui/core/AppBar';
 import Typography from '@material-ui/core/Typography';
 import Toolbar from '@material-ui/core/Toolbar';
 
+import {Link} from 'react-router-dom'
+
 //Colors
 import indigo400 from '@material-ui/core/colors/indigo';
 
@@ -15,11 +17,15 @@ export default class MyNabBar extends React.Component {
 
         return(
             
-            <AppBar  position="static" style={{'backgroundColor': indigo}}>
+            <AppBar  
+                position="static" 
+                style={{'backgroundColor': indigo}}>
                 <Toolbar>
-                    <Typography variant="h5">
-                        Places
-                    </Typography>
+                    <Link to={'/'}>
+                        <Typography variant="h5" style={{'color': 'white'}}>
+                            Places
+                        </Typography>
+                    </Link>
                 </Toolbar>
             </AppBar>
         )

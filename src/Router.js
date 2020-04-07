@@ -12,7 +12,7 @@ import Dashboard from './pages/dashboard'
 import App from './App';
 import Place from './pages/Place';
 
-const userSignedIn = true;
+const userSignedIn = false;
 
 export default class Router extends React.Component {
   

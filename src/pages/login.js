@@ -4,6 +4,8 @@ import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import Container from '../components/container';
 
+import {login, signUp} from '../request/auth';
+
 import {
     // BrowserRouter as ReactRouter,
     Route,
@@ -12,6 +14,52 @@ import {
 
 export default class Login extends React.Component{
 
+    constructor(props){
+        super(props);
+
+        // this.requestAuth = this.requestAuth.bind(this);
+        this.state = {
+            email: '',
+            password: ''
+          };
+
+        this.handleChange = this.handleChange.bind(this);
+        this.requestAuth = this.requestAuth.bind(this);
+        this.createAccount = this.createAccount.bind(this);
+    }
+
+    handleChange(event) {
+        this.setState({ [event.target.name] : event.target.value});
+      }
+    // requestAuth() {
+    //     const credentials = {
+    //         email: this.refs.emailField.getValue(),
+    //         password: this.refs.passwordField.getValue(),
+    //     }
+
+    //     login(credentials).then(console.log).catch(console.log);
+
+
+    // }
+
+    requestAuth(){
+        const credentials = {
+          email: this.state.email,
+          password: this.state.password,
+        }
+      
+        login(credentials).then(console.log).catch(console.log);
+      }
+
+    createAccount(){
+      const credentials = {
+        email: this.state.email,
+        password: this.state.password,
+      }
+
+      signUp(credentials).then(console.log).catch(console.log);
+    }
+
     render() {
         return(
             <div style={{"width": "100%" , "marginTop": "15px"}} className="row middle-xs">
@@ -19,8 +67,8 @@ export default class Login extends React.Component{
                 <Container>
                 <div>
                     <Title></Title>
-                    <TextField id="outlined-basic" className="textfield" label="Correo Electronico" type="email" variant="outlined" />
-                    <TextField id="outlined-basic" className="textfield" label="Contraseña" type="password" variant="outlined" />
+                    <TextField id="outlined-basic" className="textfield" label="Correo Electronico" type="email" variant="outlined" ref="emailField" name="email" onChange={this.handleChange}/>
+                    <TextField id="outlined-basic" className="textfield" label="Contraseña" type="password" variant="outlined" ref="passwordField" name="password" onChange={this.handleChange}/>
                     
                         <div className="login-actions">
                             <Route path="/login" exact render={() => {
@@ -33,7 +81,7 @@ export default class Login extends React.Component{
                                         <Link to="/signup" style={{'marginRight': "1rem"}}>
                                           Crear nueva cuenta
                                         </Link>
-                                        <Button variant="contained" color="secondary">
+                                        <Button onClick={this.requestAuth} variant="contained" color="secondary">
                                           Ingresar
                                         </Button>
                                     </div>  
@@ -45,7 +93,7 @@ export default class Login extends React.Component{
                                         <Link to="/login" style={{'marginRight': "1rem"}}>
                                             Ya tengo cuenta
                                         </Link>
-                                        <Button variant="contained" color="secondary">
+                                        <Button onClick={this.createAccount} variant="contained" color="secondary">
                                         Crear cuenta
                                         </Button>
                                     </div>  

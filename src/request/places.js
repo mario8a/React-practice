@@ -6,7 +6,15 @@ function getPlaces(){
     .catch(console.log)
 }
 
-export {getPlaces};
+function getPlace(slug) {
+    return fetch("http://localhost:5000/places/"+ slug)
+    .then(data => {
+        return data.json();
+    })
+    .catch(console.log)
+}
+
+export {getPlaces, getPlace};
 
 export default {
     places: [ 

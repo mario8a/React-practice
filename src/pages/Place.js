@@ -3,20 +3,39 @@ import React from 'react';
 import Container from '../components/container';
 import Card from '@material-ui/core/Card';
 
-export default class Place extends React.Component {
+import {getPlace} from '../request/places';
+
+import { withRouter } from "react-router";
+
+class Place extends React.Component {
     constructor(props){
         super(props);
+        // console.log(props);
+        const slug = props.match.params.slug;
+        this.loadPlace(slug)
+
         this.state = {
             place: {}
         }
     }
 
+    loadPlace(slug) {
+        getPlace(slug).then(resp => {
+            console.log(resp);
+
+            this.setState( {
+                place: resp
+            })
+        })
+    }
+
     render(){
+        const {place} = this.state;
         return(
             <div className="place-container">
                 <header 
                         className="place-cover" 
-                        style={{'backgroundImage': 'url('+this.state.place.coverImage+')'}}>
+                        style={{'backgroundImage': 'url('+place.coverImage+')'}}>
 
                 </header>
                 <Container>
@@ -25,12 +44,12 @@ export default class Place extends React.Component {
                             <Card className="place-card">
                                 <div className="row">
                                     <div className="col-xs-12 col-sm-3 col-lg-2">
-                                        <img src={this.state.place.avatarImage} style={{'maxWidth': '100%'}} alt=""/>
+                                        <img src={place.avatarImage} style={{'maxWidth': '100%'}} alt=""/>
                                     </div>
                                     <div className="col-xs">
-                                        <h1>{this.state.place.title}</h1>
-                                        <address>{this.state.place.address}</address>
-                                        <p>{this.state.place.description}</p>
+                                        <h1>{place.title}</h1>
+                                        <address>{place.address}</address>
+                                        <p>{place.description}</p>
                                     </div>
                                 </div>
                             </Card>
@@ -41,3 +60,6 @@ export default class Place extends React.Component {
         );
     }
 }
+
+
+export default withRouter(Place);
