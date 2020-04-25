@@ -8,3 +8,5 @@ export default function placesReducer(state = [1], action) {
             return state;
     }
 }
+
+// Si no se retorna el state, lo que hara sera borrar esa parte del almacenamiento del reducer

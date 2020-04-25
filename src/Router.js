@@ -12,13 +12,15 @@ import Dashboard from './pages/dashboard'
 import App from './App';
 import Place from './pages/Place';
 
+import {connect} from 'react-redux';
+
 const userSignedIn = false;
 
-export default class Router extends React.Component {
+class Router extends React.Component {
   
   // Si el usuario esta auth prodra ingresa
   signedInRoutes() {
-    if(userSignedIn) {
+    if(this.props.user.jwt) {
       return (
         <Route path="/new" render={() => <h1>Bienvenido</h1>}></Route>
       )
@@ -26,7 +28,7 @@ export default class Router extends React.Component {
   }
 
   home() {
-    if(userSignedIn) return Dashboard;
+    if(this.props.user.jwt) return Dashboard;
 
     return Home;
   }
@@ -49,3 +51,11 @@ export default class Router extends React.Component {
     // Switch encaja unicamente con el primero que condida con la ruta (component)
 
 }
+
+function mapStateToProps(state, ownProps) {
+  return {
+    user: state.user
+  }
+}
+
+export default connect(mapStateToProps)(Router);

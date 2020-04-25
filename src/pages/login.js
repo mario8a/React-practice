@@ -6,16 +6,22 @@ import Container from '../components/container';
 
 import {login, signUp} from '../request/auth';
 
+import {connect} from 'react-redux';
+
+import * as actions from '../actions/userActions';
+
 import {
     // BrowserRouter as ReactRouter,
     Route,
     Link
   } from "react-router-dom";
 
-export default class Login extends React.Component{
+class Login extends React.Component{
 
     constructor(props){
         super(props);
+
+        // console.log(props.user);
 
         // this.requestAuth = this.requestAuth.bind(this);
         this.state = {
@@ -48,7 +54,11 @@ export default class Login extends React.Component{
           password: this.state.password,
         }
       
-        login(credentials).then(console.log).catch(console.log);
+        login(credentials).then(data => {
+          // console.log(data);
+          this.props.dispatch(actions.login(data.jwt))
+
+        }).catch(console.log);
       }
 
     createAccount(){
@@ -127,3 +137,11 @@ export default class Login extends React.Component{
     }
 
 }
+
+function mapStateToProps(state, ownProps) {
+  return {
+    user: state.user
+  }
+}
+
+export default connect(mapStateToProps)(Login);
