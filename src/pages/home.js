@@ -1,14 +1,16 @@
 import React from 'react';
+import {Link} from "react-router-dom";
 
 import Button from '@material-ui/core/Button';
-
 // Colors
 import indigo400 from '@material-ui/core/colors/indigo';
 
-import Title from '../components/Title';
-import data from '../request/places';
-import {Link} from "react-router-dom";
+import {connect} from 'react-redux';
 
+import data from '../request/places';
+import {getPlaces} from '../request/places';
+
+import Title from '../components/Title';
 import Benefit from '../components/benefits';
 import PlaceCard from '../components/places/placeCard';
 import Container from '../components/container';
@@ -19,7 +21,7 @@ import { TransitionGroup } from 'react-transition-group';
 const indigo = indigo400[400];
 
 
-export default class Home extends React.Component{
+class Home extends React.Component{
 
     constructor(props) {
         super(props);
@@ -28,10 +30,20 @@ export default class Home extends React.Component{
             places: data.places
         }
 
+        console.log(this.props.places);
+
         // setTimeout(() => this.setState({places: data.places}), 2000)
 
         //Evita que el valor de this cambie reasignando la funcion
         this.hidePlace = this.hidePlace.bind(this)
+    }
+
+    loadPlaces() {
+      getPlaces().then(jsonR => {
+        const places = jsonR.docs;
+        
+
+      })
     }
 
     places(){
@@ -75,6 +87,13 @@ export default class Home extends React.Component{
             </section>
         );
     }
-
-
 }
+
+function mapStateToProps(state, ownProps) {
+  return {
+    places: state.places
+  }
+}
+
+
+export default connect(mapStateToProps)(Home)
