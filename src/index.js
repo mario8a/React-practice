@@ -6,11 +6,12 @@ import Router from './Router';
 // import * as serviceWorker from './serviceWorker';
 import configureStore from './store/configureStore';
 import {Provider} from 'react-redux';
-import createHistory from 'history/createBrowserHistory';
+// import createHistory from 'history/createBrowserHistory';
+import { createBrowserHistory } from 'history'
 
 import { routerMiddleware  } from 'react-router-redux';
 
-const history = createHistory();
+const history = createBrowserHistory();
 
 const middleware = routerMiddleware(history);
 

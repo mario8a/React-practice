@@ -7,7 +7,7 @@ import {
 
   import { withRouter } from "react-router";
 
-import MyNavBar from './components/navigation/MyNavBar';
+import Navigation from './components/navigation/Navigation';
 
 import './App.css';
 
@@ -17,17 +17,18 @@ class App extends Component {
         super(props);
         console.log(props);
         // para no perder el valor de this
-        this.goHome = this.goHome.bind(this);
+        // this.goHome = this.goHome.bind(this);
     }
 
-    goHome(){
-        this.props.history.push('/');
-    }
+    // Se cambio a un omponente Navigation
+    // goHome(){
+    //     this.props.history.push('/');
+    // }
 
     render() {
         return (
             <ThemeProvider>
-                <MyNavBar goHome={this.goHome}/>
+                <Navigation/>
                 <TransitionGroup>
                     <CSSTransition classNames="left-out" timeout={300} key={this.props.location.pathname.split('/')[1]}>
                     {this.props.children}
