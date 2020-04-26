@@ -10,6 +10,10 @@ import {connect} from 'react-redux';
 
 import * as actions from '../actions/userActions';
 
+
+import { push } from 'react-router-redux';
+
+
 import {
     // BrowserRouter as ReactRouter,
     Route,
@@ -56,7 +60,9 @@ class Login extends React.Component{
       
         login(credentials).then(data => {
           // console.log(data);
-          this.props.dispatch(actions.login(data.jwt))
+          this.props.dispatch(actions.login(data.jwt));
+
+          this.props.dispatch(push('/'))
 
         }).catch(console.log);
       }

@@ -30,7 +30,7 @@ class Home extends React.Component{
             places: data.places
         }
 
-        console.log(this.props.places);
+        // console.log(this.props.places);
 
         // setTimeout(() => this.setState({places: data.places}), 2000)
 

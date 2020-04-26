@@ -13,8 +13,10 @@ import App from './App';
 import Place from './pages/Place';
 
 import {connect} from 'react-redux';
+import { ConnectedRouter } from 'react-router-redux';
 
-const userSignedIn = false;
+
+// const userSignedIn = false;
 
 class Router extends React.Component {
   
@@ -35,7 +37,7 @@ class Router extends React.Component {
 
     render() {
         return(
-            <ReactRouter>
+            <ConnectedRouter history = {this.props.history}>
               <App>
                 <Switch>
                   <Route exact path="/" component={this.home()}></Route>
@@ -45,7 +47,7 @@ class Router extends React.Component {
                   {this.signedInRoutes()}
                 </Switch>
               </App>
-            </ReactRouter>
+            </ConnectedRouter>
         )
     }
     // Switch encaja unicamente con el primero que condida con la ruta (component)
