@@ -1,6 +1,7 @@
 import {createStore, combineReducers, compose, applyMiddleware} from 'redux';
 import persistState from 'redux-localstorage';
 import reducers from '../reducers';
+import thunk from 'redux-thunk';
 
 import { routerReducer } from 'react-router-redux';
 
@@ -24,6 +25,6 @@ const rootReducer = combineReducers({
 export default function configureStore(middleware){ 
     return createStore( 
         rootReducer, 
-        compose( persistState('user'), applyMiddleware(middleware), ) ); 
+        compose( persistState('user'), applyMiddleware(middleware, thunk), ) ); 
     }
 

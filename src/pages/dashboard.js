@@ -1,20 +1,23 @@
 import React from 'react';
+import {connect} from 'react-redux';
 
 import Button from '@material-ui/core/Button';
 import Fab from '@material-ui/core/Fab';
 import AddIcon from '@material-ui/icons/Add';
 
 // import data from '../request/places';
-import {getPlaces} from '../request/places';
+// import {getPlaces} from '../request/places';
 
 import Container from '../components/container';
 import PlaceHorizontal from '../components/places/placeHorizontal';
+
+import * as actions from '../actions/placesActions';
 
 import {
     Link
   } from "react-router-dom";
 
-export default class Dashboard extends React.Component {
+class Dashboard extends React.Component {
 
     constructor(props) {
         super(props);
@@ -27,16 +30,19 @@ export default class Dashboard extends React.Component {
     }
 
     loadPlaces() {
-      getPlaces().then(resp => {
-        console.log(resp);
-        this.setState({
-          places: resp.docs
-        })
-      })
+      // getPlaces().then(resp => {
+      //   console.log(resp);
+      //   this.setState({
+      //     places: resp.docs
+      //   })
+      // })
+
+      this.props.dispatch(actions.loadAll())
+
     }
 
     places() {
-        return this.state.places.map((place, index)  => {
+        return this.props.places.map((place, index)  => {
            return <PlaceHorizontal place={place} />
         })
     }
@@ -65,3 +71,11 @@ export default class Dashboard extends React.Component {
         )
     }
 }
+
+function mapStateToProps(state,ownProps){
+  return{
+    places: state.places
+  }
+}
+
+export default connect(mapStateToProps)(Dashboard);

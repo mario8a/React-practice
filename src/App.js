@@ -15,7 +15,7 @@ class App extends Component {
 
     constructor(props) {
         super(props);
-        console.log(props);
+        // console.log(props);
         // para no perder el valor de this
         // this.goHome = this.goHome.bind(this);
     }

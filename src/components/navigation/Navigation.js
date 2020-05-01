@@ -10,7 +10,7 @@ class Navigation extends React.Component {
      
     constructor(props) {
         super(props);
-        console.log(props.user);
+        // console.log(props.user);
         this.goHome = this.goHome.bind(this);
         this.logout = this.logout.bind(this);
     }

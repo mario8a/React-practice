@@ -1,5 +1,8 @@
+import config from '../config/secrets';
+
 function getPlaces(){
-    return fetch("http://localhost:5000/places")
+    // return fetch(config.url + "/places")
+    return fetch(`${config.url}/places`)
     .then(data => {
         return data.json();
     })
@@ -7,7 +10,8 @@ function getPlaces(){
 }
 
 function getPlace(slug) {
-    return fetch("http://localhost:5000/places/"+ slug)
+    // return fetch(config.url + "/places/"+ slug)
+    return fetch(`${config.url}/places/${slug}`)
     .then(data => {
         return data.json();
     })
