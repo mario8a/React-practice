@@ -18,6 +18,27 @@ function getPlace(slug) {
     .catch(console.log)
 }
 
+function createPlace(data,jwt) {
+
+    let formData = new FormData();
+
+    for(let field in data) {
+        //field es el nombre del campo
+        formData.append(field, data[field])
+    }
+
+    return fetch(config.url + '/places', {
+        method: 'POST',
+        body: formData,
+        headers: {
+            'Accpet': 'application/json',
+            'Authorization': 'Bearer '+ jwt
+        }
+    }).then(dataRemote => {
+        return dataRemote.json();
+    })
+}
+
 export {getPlaces, getPlace};
 
 export default {
