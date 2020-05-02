@@ -31,7 +31,7 @@ function createPlace(data,jwt) {
         method: 'POST',
         body: formData,
         headers: {
-            'Accpet': 'application/json',
+            'Accept': 'application/json',
             'Authorization': 'Bearer '+ jwt
         }
     }).then(dataRemote => {
@@ -39,7 +39,7 @@ function createPlace(data,jwt) {
     })
 }
 
-export {getPlaces, getPlace};
+export {getPlaces, getPlace, createPlace};
 
 export default {
     places: [ 

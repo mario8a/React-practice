@@ -9,19 +9,46 @@ import * as request from '../../request/places';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 import Card from '@material-ui/core/Card';
+import {push} from 'react-router-redux';
 
 import './styles.css'
 
 class NewPlace extends Component {
-    constructor() {
-        super()
+    constructor(props) {
+        super(props)
+
+        this.state = {
+            title: '',
+            address: '',
+            description: ''
+        }
+
+        this.handleChange = this.handleChange.bind(this);
+        this.createPlace = this.createPlace.bind(this);
     }
+
+    handleChange(event) {
+        this.setState({ [event.target.name] : event.target.value});
+      }
+
     createPlace() {
         const data = {
-            title: this.refs.titleField.getValue(),
-            address: this.refs.addressField.getValue(),
-            description: this.refs.descField.getValue()
+            title: this.state.title,
+            address: this.state.address,
+            description: this.state.description
         }
+        
+        if(data['title'] == "" || data["address"] == "" || data['description'] == ""){
+            alert('Toda la información debe ser llenada'); //Handle error
+            return "";
+          }
+
+          request.createPlace(data, this.props.user.jwt).then(data => {
+            //   console.log(data)
+            // this.props.dispatch(push("/")) regresa a la lista de los lugares
+            this.props.dispatch(push("/lugares/"+data.slug))
+          }).catch(console.log)
+      
     }
 
     render() {
@@ -39,12 +66,16 @@ class NewPlace extends Component {
                                     id="outlined-basic" 
                                     label="Nombre del negocio" 
                                     variant="filled" 
-                                    ref="titleField"/>
+                                    ref="titleField"
+                                    name='title'
+                                    onChange={this.handleChange}/>
                         <TextField className="input"
                                     id="outlined-basic" 
                                     label="Direccion del negocio" 
                                     variant="filled" 
-                                    ref="addressField"/>
+                                    ref="addressField"
+                                    name='address'
+                                    onChange={this.handleChange}/>
 
                         <TextField className="input"
                                     placeholder="Descripcion del negocio"
@@ -53,6 +84,8 @@ class NewPlace extends Component {
                                     rows={12}
                                     variant="outlined"
                                     ref="descField"
+                                    name='description'
+                                    onChange={this.handleChange}
                                   />
 
                         <div style={{'textAlign': 'right', 'marginTop': '1em'}}>
