@@ -3,6 +3,7 @@ import {connect} from 'react-redux';
 
 import Title from '../../components/Title';
 import Container from '../../components/container';
+import Uploader from '../../components/uploader/Uploader';
 
 import * as request from '../../request/places';
 
@@ -38,7 +39,7 @@ class NewPlace extends Component {
             description: this.state.description
         }
         
-        if(data['title'] == "" || data["address"] == "" || data['description'] == ""){
+        if(data['title'] === "" || data["address"] === "" || data['description'] === ""){
             alert('Toda la información debe ser llenada'); //Handle error
             return "";
           }
@@ -76,6 +77,8 @@ class NewPlace extends Component {
                                     ref="addressField"
                                     name='address'
                                     onChange={this.handleChange}/>
+                        
+                        <Uploader label="Subir avatar"/>
 
                         <TextField className="input"
                                     placeholder="Descripcion del negocio"
