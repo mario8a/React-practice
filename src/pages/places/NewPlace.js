@@ -21,11 +21,14 @@ class NewPlace extends Component {
         this.state = {
             title: '',
             address: '',
-            description: ''
+            description: '',
+            uploading: false
         }
 
         this.handleChange = this.handleChange.bind(this);
         this.createPlace = this.createPlace.bind(this);
+        this.getFile = this.getFile.bind(this);
+        
     }
 
     handleChange(event) {
@@ -44,12 +47,29 @@ class NewPlace extends Component {
             return "";
           }
 
+        if(this.state.avatar) data.avatar = this.state.avatar;
+        if(this.state.cover) data.cover = this.state.cover;
+
+        this.setState({uploading: true})
+
+
           request.createPlace(data, this.props.user.jwt).then(data => {
             //   console.log(data)
             // this.props.dispatch(push("/")) regresa a la lista de los lugares
+            this.setState({uploading: false})
             this.props.dispatch(push("/lugares/"+data.slug))
           }).catch(console.log)
       
+    }
+
+    getFile(type, file) {
+        let state = {};
+        state[type] = file;
+
+        this.setState(state);
+        // setTimeout(() => {
+        //     console.log(this.state);
+        // }, 2000);
     }
 
     render() {
@@ -78,7 +98,14 @@ class NewPlace extends Component {
                                     name='address'
                                     onChange={this.handleChange}/>
                         
-                        <Uploader label="Subir avatar"/>
+                        <Uploader label="Subir avatar" 
+                                    type='avatar'
+                                    getFile={this.getFile}
+                                />
+                        <Uploader label="Subir cover" 
+                                    type='cover'
+                                    getFile={this.getFile}
+                                />
 
                         <TextField className="input"
                                     placeholder="Descripcion del negocio"
@@ -92,7 +119,14 @@ class NewPlace extends Component {
                                   />
 
                         <div style={{'textAlign': 'right', 'marginTop': '1em'}}>
-                            <Button variant="contained"  onClick={this.createPlace} color="secondary">Guardar</Button>
+                            <Button 
+                                variant="contained"  
+                                onClick={this.createPlace} 
+                                disabled={this.state.uploading}
+                                color="secondary"
+                                >
+                                Guardar
+                            </Button>
                         </div>
 
                         </div>

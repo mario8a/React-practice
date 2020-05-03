@@ -21,10 +21,13 @@ class Uploader extends Component {
     handleFile(e) {
         let file = e.target.files[0]
         if(!file) return;
-        console.log(file)
+        // console.log(file)
+
         this.setState({
             file
-        })
+        });
+
+        this.props.getFile(this.props.type, file)
     }
 
     render() {
