@@ -10,14 +10,20 @@ import TextField from '@material-ui/core/TextField';
 class VisitModal extends Component {
     constructor(props){
         super(props)
-
         this.state = {
-            open: true
+            observation: '',
+            open: false,
         }
 
+        this.handleChange = this.handleChange.bind(this);
         this.closeModal = this.closeModal.bind(this);
-        this.openModal = this.openModal.bind(this);
+        this.submit = this.submit.bind(this);
     }
+
+    handleChange(e) {
+        const { value } = e.target;
+        this.setState({ observation: value });
+      }
 
     openModal() {
         this.setState({
@@ -29,6 +35,20 @@ class VisitModal extends Component {
         this.setState({
             open: false
         })
+    }
+
+    submit() {
+        // const observation = {
+        //     observation: this.state.observation,
+        // }
+
+        // console.log(this.state.observation);
+        const observation = this.state.observation;
+        console.log(observation);
+
+        // console.log(observation);
+        this.props.onSubmit(observation)
+        this.closeModal();
     }
 
     render() {
@@ -53,12 +73,14 @@ class VisitModal extends Component {
                                     id="filled-basic" 
                                     label="Cuentanos que te parecio este lugar"
                                     variant="filled"
-                                    ref="observationField"
                                     multiline
+                                    onChange={this.handleChange}
+                                    name="observation"
+                                    
                                     style={{'width': '100%'}}
                                     />
                                 <div style={{'marginTop': '1em'}}>
-                                    <Button variant="contained" color="primary">
+                                    <Button variant="contained" onClick={this.submit} color="primary">
                                         Guardar
                                     </Button>
                                     <Button 
