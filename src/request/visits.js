@@ -1,5 +1,11 @@
 import config from '../config/secrets';
 
+export function getAllForPlace(slug) {
+  return fetch(config.url+'/places/'+slug+'/visits')
+              .then(response => response.json())
+              .catch(console.log)
+}
+
 
 export function add(jwt,place,observation,){
   const data = {

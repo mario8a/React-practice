@@ -1,13 +1,16 @@
 import React from 'react';
+import {connect} from 'react-redux';
 
 import Container from '../components/container';
 import Card from '@material-ui/core/Card';
-import Button from '@material-ui/core/Button';
+
+import * as actions from '../actions/visitsActions';
 
 import {getPlace} from '../request/places';
 
 import { withRouter } from "react-router";
 import VisitForm from '../components/visits/VisitForm';
+import VisitsCollection from '../components/visits/VisitsCollection';
 
 class Place extends React.Component {
     constructor(props){
@@ -22,9 +25,9 @@ class Place extends React.Component {
     }
 
     loadPlace(slug) {
+        this.props.dispatch(actions.loadAllForPlace(slug));
         getPlace(slug).then(resp => {
-            console.log(resp);
-
+            // console.log(resp);
             this.setState( {
                 place: resp
             })
@@ -37,7 +40,6 @@ class Place extends React.Component {
         const {place} = this.state;
         return(
             <div className="place-container">
-            
                 <header 
                         className="place-cover" 
                         style={{'backgroundImage': 'url('+place.coverImage+')'}}>
@@ -64,6 +66,9 @@ class Place extends React.Component {
                                 </div>
                             </Card>
                         </div>
+                        <div className="col-xs">
+                            <VisitsCollection visits={this.props.visits}/>
+                        </div>
                     </div>
                 </Container>
             </div>
@@ -71,5 +76,11 @@ class Place extends React.Component {
     }
 }
 
-
-export default withRouter(Place);
+function mapStateToProps(state,ownProps){
+    return {
+      visits: state.visits
+    }
+  }
+  
+  export default connect(mapStateToProps)(withRouter(Place));
+  
