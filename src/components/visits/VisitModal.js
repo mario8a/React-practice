@@ -20,6 +20,7 @@ class VisitModal extends Component {
         this.handleChange = this.handleChange.bind(this);
         this.closeModal = this.closeModal.bind(this);
         this.submit = this.submit.bind(this);
+        this.emojiSelected = this.emojiSelected.bind(this);
     }
 
     handleChange(e) {
@@ -53,6 +54,13 @@ class VisitModal extends Component {
         this.closeModal();
     }
 
+    emojiSelected(reaction) {
+        console.log(reaction);
+        this.setState({
+            reaction
+        })
+    }
+
     render() {
         return (
             <div>
@@ -70,7 +78,7 @@ class VisitModal extends Component {
                             </header>
                             <div className="row">
                                 <div className="col-xs-4 col-sm-2 col-lg-1">
-                                    <EmojiPicker/>
+                                    <EmojiPicker onSelect={this.emojiSelected}/>
                                 </div>
                                 <div className="col-xs">
                                 <TextField 
