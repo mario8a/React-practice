@@ -1,6 +1,8 @@
 import React from 'react';
 import emojione from 'emojione';
 
+import './style.css'
+
 function getEmojiHTML(code) {
 
     return {
@@ -10,7 +12,7 @@ function getEmojiHTML(code) {
 
 const Emoji = (props) => {
     return (
-        <div onClick={() => props.onClick(props.code)} dangerouslySetInnerHTML={getEmojiHTML(props.code)}>
+        <div className="Emoji-emoji" onClick={() => props.onClick(props.code)} dangerouslySetInnerHTML={getEmojiHTML(props.code)}>
             
         </div>
     )

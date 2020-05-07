@@ -3,6 +3,8 @@ import Emoji from './Emoji';
 
 import {emojis, relation} from './Emojis';
 
+import './style.css';
+
 export default class EmojiPicker extends Component {
 
     constructor(props) {
@@ -35,7 +37,7 @@ export default class EmojiPicker extends Component {
     render() {
         return (
             <div>
-                <ul>
+                <ul className="Emoji-picker">
                     {this.buildEmojis() }
                 </ul>
             </div>
