@@ -30,7 +30,7 @@ class VisitForm extends Component {
                 <Button 
                     onClick={this.openVisitsModal}
                     color="secondary">
-                        Agregar un comentario
+                        Valorar tu visita al negocio
                  </Button>
             </div>
         )

@@ -7,8 +7,17 @@ import Card from '@material-ui/core/Card';
 import CardHeader from '@material-ui/core/CardHeader';
 import Avatar from '@material-ui/core/Avatar';
 // import Typography from '@material-ui/core/Typography';
+import Emoji from './emoji_picker/Emoji'
+import {relationInverse} from './emoji_picker/Emojis';
 
 export default class Visit extends Component {
+
+    getShortCode() {
+        if(!this.props.visit.reaction) return relationInverse["love"];
+
+        return relationInverse[this.props.visit.reaction];
+    }
+
     render() {
         return (
             <FadeAndScale in={this.props.in}>
@@ -24,8 +33,8 @@ export default class Visit extends Component {
 
                                 </CardHeader>
                             </div>
-                            <div className="col-xs-2 col-sm-1">
-                            
+                            <div className="col-xs-2 col-sm-1 col-lg-3">
+                                    <Emoji code={this.getShortCode()}/>
                             </div>
                         </div>
                     </Card>

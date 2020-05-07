@@ -12,7 +12,7 @@ function getEmojiHTML(code) {
 
 const Emoji = (props) => {
     return (
-        <div className="Emoji-emoji" onClick={() => props.onClick(props.code)} dangerouslySetInnerHTML={getEmojiHTML(props.code)}>
+        <div className="Emoji-emoji" onClick={()=> props.onClick(props.code)} dangerouslySetInnerHTML={getEmojiHTML(props.code)}>
             
         </div>
     )

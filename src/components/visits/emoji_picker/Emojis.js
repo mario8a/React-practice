@@ -15,3 +15,12 @@ export const relation = {
     ":disappointed:": "disgust",
     ":angry:": "anger"
 };
+
+export const relationInverse = {
+    "love": ":heart_eyes:",
+    "like": ":sunglasses:",
+    "yummy": ":hugging:",
+    "dissappointment": ":confused:",
+    "disgust": ":disappointed:",
+    "anger": ":angry:"
+};

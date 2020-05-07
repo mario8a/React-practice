@@ -9,8 +9,9 @@ export default class FadeAndScale extends Component {
           <div className={this.props.className}>
             <CSSTransition
                 timeout={200}
-                classNames="my-node"
                 in={this.props.in}
+                classNames="my-node"
+                unmountOnExit={true}
               >
               {this.props.children}
             </CSSTransition>
