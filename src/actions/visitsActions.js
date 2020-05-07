@@ -20,12 +20,12 @@ export function loadAllForPlace(slug){
   
   
 
-export function addVisit(place, observation) {
+export function addVisit(place, observation,reaction) {
     return (dispatch,getState) => {
         let user = getState().user;
         if(!user) return null;    
 
-        request.add(user.jwt,place,observation).then(result => {
+        request.add(user.jwt,place,observation,reaction).then(result => {
             dispatch(addVisitSuccess(result))
         })
     }

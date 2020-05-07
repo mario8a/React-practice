@@ -7,10 +7,11 @@ export function getAllForPlace(slug) {
 }
 
 
-export function add(jwt,place,observation,){
+export function add(jwt,place,observation,reaction){
   const data = {
     _place: place._id,
     observation,
+    reaction
   }
 
   return fetch(config.url+'/places/'+place.slug+'/visits',{

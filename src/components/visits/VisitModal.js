@@ -50,7 +50,7 @@ class VisitModal extends Component {
         console.log(observation);
 
         // console.log(observation);
-        this.props.onSubmit(observation)
+        this.props.onSubmit(observation, this.state.reaction)
         this.closeModal();
     }
 

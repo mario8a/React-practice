@@ -8,7 +8,7 @@ import {
 export default class VisitsCollection extends Component {
 
     visits(){ 
-        if(this.props.visits.length < 1) return "";
+        if(this.props.visits.length < 1) return;
 
         return this.props.visits.map(visit => <Visit key={visit._id} visit={visit} /> )
     }
