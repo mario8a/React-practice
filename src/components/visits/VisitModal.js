@@ -7,6 +7,8 @@ import Title from '../Title';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 
+import EmojiPicker from './emoji_picker/EmojiPicker';
+
 class VisitModal extends Component {
     constructor(props){
         super(props)
@@ -67,7 +69,9 @@ class VisitModal extends Component {
                                 </h1>
                             </header>
                             <div className="row">
-                                <div className="col-xs-4 col-sm-2 col-lg-1"></div>
+                                <div className="col-xs-4 col-sm-2 col-lg-1">
+                                    <EmojiPicker/>
+                                </div>
                                 <div className="col-xs">
                                 <TextField 
                                     id="filled-basic" 
